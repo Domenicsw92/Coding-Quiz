@@ -11,38 +11,31 @@
 
 <body>
     <header>
-        Coding Quiz
-    </header>
+        <h1>Coding Quiz</h1>
+        <br>
+        <div id="countdownTimer">
+            <span id="timer"></span>
+            <span class="remaining Title">seconds remaining</span>
+        </div>
 
-    <main>
+        <main>
 
 
-        <div class="container">
-            <div id="question-card" class=" hide">
-                <div id="question">Question</div>
-                <div id="answer-btn" class="btn-card">
-                    <button class="btnCard">Answer1</button>
-                    <button class="btnCard">Answer2</button>
-                    <button class="btnCard">Answer3</button>
-                    <button class="btnCard">Answer4</button>
+            <section class="container">
+                <div id="question-card" class=" hide">
+                    <div id="question" class="quest">Question</div>
+                    <div id="answer-btn" class="btn-card">
+                        <button class="btn">Answer1</button>
+                        <button class="btn">Answer2</button>
+                        <button class="btn">Answer3</button>
+                        <button class="btn">Answer4</button>
+                    </div>
                 </div>
-            </div>
-            <div class="controls">
-                <button id="start-btn" class="start-btn btn">Start</button>
-            </div>
-        </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-    </main>
+                <div class="controls">
+                    <button id="start-btn" class="start-btn btn">Start</button>
+                    <button id="restart-btn" class="restart-btn btn hide">Restart</button>
+                </div>
+            </section>
 
 
 
@@ -57,7 +50,22 @@
 
 
 
-    <script type="text/javascript" src="./assets/js/script.js"></script>
+        </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script type="text/javascript" src="assets\js\script.js"></script>
 </body>
 
 </html>
