@@ -1,8 +1,6 @@
 *{ margin: auto;  padding: auto;}
 :root{
 
-    --hue-correct: 145;
-    --hue-wrong: 0;
 }
 body{
     padding: 0;
@@ -38,12 +36,12 @@ header {
     background-color: white;
     border-radius: 5%;
     padding: 10px;
-    box-shadow: 0 0 10px 5px;
+    box-shadow: 0 0 10px 5px black;
 }
 
 .quest{
-    font-size: 200%;
     font-weight: bolder;
+    color: black;
 }
 
 .btn-card{
@@ -54,7 +52,7 @@ header {
 
 }
 .btn{
-    font-size: 250%;
+    font-size: 90%;
     border: 1px solid;
     background-color: darkgrey;
     border-radius: 5px;
