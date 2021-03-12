@@ -7,8 +7,9 @@ var questionCardElement = document.getElementById('question-card');
 var questionElement = document.getElementById('question');
 var answerBtnElemnt = document.getElementById('answer-btn');
 var feedBackElement = document.getElementById('feedback')
+var endCardScreen = document.getElementById('end-Card')
 var timerInterval = 1000;
-var timerCount = 100;
+var timerCount = 5;
 var timeCounter;
 
 
@@ -63,7 +64,7 @@ function showQuestion(question) {
         button.classList.add('btn')
         button.innerText = element
         answerBtnElemnt.appendChild(button)
-        button.addEventListener('click', nextQuestion)
+        button.addEventListener('click', selectAnswers)
     })
 }
 function resetQuestionCard() {
@@ -78,12 +79,12 @@ function nextQuestion() {
 }
 
 function selectAnswers() {
-    if (this.value !== questions[currentQuestionIndex].choices) {
-        time -= 15;
-        if (time < 0) {
-            time = 0;
+    if (this.element !== questions[currentQuestionIndex].choices) {
+        timerCount -= 15;
+        if (timer < 0) {
+            timer = 0;
         }
-        gameTimer.textContent = counter;
+        gameTimer.textContent = timerCount ;
         feedBackElement.textContent = "Wrong";
     } else {
         feedBackElement.textContent = "Correct";
@@ -93,6 +94,13 @@ function selectAnswers() {
         feedBackElement.classList.add('hide');
     }, 1000);
     currentQuestionIndex++;
+
+    if (currentQuestionIndex === questions.length){
+        endQuiz();
+    } 
+    else{
+        showQuestion();
+    }
 }
 
 
@@ -110,6 +118,17 @@ timeCounter = setInterval(function () {
     function updateTimer() {
         gameTimer.textContent = timerCount;
     }
+
+    function endQuiz(){
+        clearInterval(timerCounter)
+        endCardScreen.classList.remove('hide')
+        questionCardElement.classList.add('hide')
+        var finalScoreElement = document.getElementById('final_score')
+        finalScoreElement.textContent = timerCount
+
+
+    }
+
 
     function init() {
         gameStart();
