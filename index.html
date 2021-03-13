@@ -12,62 +12,61 @@
 <body>
     <header>
         <h1>Coding Quiz</h1>
-        <p id="intro"> Test your knowledge in the allowed time quickest time wins! <br> Wrong answers loses you time! </p>
+        <p id="intro"> Test your knowledge in the allowed time quickest time wins! <br> Wrong answers loses you time!
+        </p>
+        <br>
+        <p id="fin" class="hide"> Quiz Has Ended!!</p>
         <div id="countdownTimer">
             <span id="timer" class="hide"></span>
             <span id="timer-text" class="remaining hide">seconds remaining</span>
         </div>
-        </header>
-        <nav>
-            <a>   </a>
-        </nav>
+    </header>
+    <nav>
+        <a href="./highScores.html" class="navbar"> View HighScores!</a>
+    </nav>
 
-        <main>
+    <main>
 
 
-            <section id= "Quiz_card" class="container">
-                <div id="question-card" class=" hide">
-                    <div id="question" class="quest">Question</div>
-                    <div id="answer-btn" class="btn-card">
-                        <button class="btn">Answer1</button>
-                        <button class="btn">Answer2</button>
-                        <button class="btn">Answer3</button>
-                        <button class="btn">Answer4</button>
-                    </div>
+        <section id="Quiz_card" class="container">
+            <div id="question-card" class=" hide">
+                <div id="question" class="quest">Question</div>
+                <div id="answer-btn" class="btn-card">
+                    <button class="btn">Answer1</button>
+                    <button class="btn">Answer2</button>
+                    <button class="btn">Answer3</button>
+                    <button class="btn">Answer4</button>
                 </div>
-                <div class="controls">
-                    <button id="start-btn" class="start-btn btn">Start</button>
-                    <button id="restart-btn" class="restart-btn btn hide">Restart</button>
-                </div>
-            </section>
+            </div>
+            <div class="controls">
+                <button id="start-btn" class="start-btn btn">Start</button>
+            </div>
+        </section>
 
-            <div id = "feedback" class="feedBack hide"></div>
-
-            <section id="end_Card" class="container hide">
-                <h2>Your Quiz Has Eneded! </h2> <span id="final_score"></span>
-                <p>Enter your initals!: <input type="text" id="name" class="nametext"></p>
-                <button id="submit" class="submitbtn"> Save your initals and Score</button>
-            </section>
+        <div id="feedback" class="feedBack hide">
+            <img id="wrong_img" class="images hide" src="assets\images\Wrong.jpg" alt="Wrong">
+            <img id="correct_img"class="images hide" src="assets\images\Correct.jpg" alt="Correct">
+        </div>
 
 
+        <section id="end_Card" class="container hide">
+            <h2>Your Quiz Has Eneded! </h2> <span id="final_score"></span>
+            <p>Enter your initals!: <input type="text" id="name" class="nametext"></p>
+            <button id="submit" class="submitbtn"> Save your initals and Score</button>
+        </section>
 
+        <section id="restart_card" class="container hide">
+            <h2>Thanks for playing Would you like to play again?</h2>
+            <button id="restart-btn" class="restart-btn btn hide">Restart</button>
 
+        </section>
 
-
-
-
-
-
-
-
-
-
-        </main>
+    </main>
 
 
 
 
-        <script type="text/javascript" src="assets\js\script.js"></script>
+    <script type="text/javascript" src="assets\js\script.js"></script>
 </body>
 
 </html>

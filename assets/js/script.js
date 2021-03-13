@@ -1,6 +1,7 @@
 var gameStartBtn = document.getElementById('start-btn');
 var reStarteBtn = document.getElementById('restart-btn');
 var introText = document.getElementById('intro')
+var endText = document.getElementById('fin')
 var gameTimer = document.getElementById('timer');
 var gameTimerText = document.getElementById('timer-text');
 var questionCardElement = document.getElementById('question-card');
@@ -10,10 +11,11 @@ var feedBackElement = document.getElementById('feedback')
 var endCardScreen = document.getElementById('end_Card')
 var quizCardElement = document.getElementById('Quiz_card');
 var submitBtnElement = document.getElementById('submit')
+var wrongImage = document.getElementById('wrong_img');
+var correctImage = document.getElementById('correct_img')
 var timerInterval = 1000;
 var timerCount = 100;
 var timeCounter;
-
 
 
 var questions = [
@@ -40,8 +42,6 @@ var questions = [
 ]
 
 let shuffleQuestions, currentQuestionIndex
-
-//localStorage.getItem()
 
 function gameStart() {
 
@@ -84,25 +84,30 @@ function nextQuestion() {
 
 function selectAnswers() {
     if (this.textContent !== questions[currentQuestionIndex].correct) {
-        timerCount -= 15;
+        timerCount -= 35;
         if (timerCount < 0) {
             timerCount = 0;
         }
-        gameTimer.textContent = timerCount ;
-        feedBackElement.textContent = "Wrong";
+        gameTimer.textContent = timerCount;
+        //feedBackElement.textContent = "Wrong";
+        wrongImage.classList.remove('hide')
     } else {
-        feedBackElement.textContent = "Correct";
+        timerCount += 10
+        // feedBackElement.textContent = "Correct";
+        correctImage.classList.remove('hide')
     }
     feedBackElement.classList.remove('hide');
     setTimeout(function () {
-        feedBackElement.classList.add('hide');
+        feedBackElement.classList.add('hide')
+        wrongImage.classList.add('hide')
+        correctImage.classList.add('hide');
     }, 1000);
     currentQuestionIndex++;
 
-    if (currentQuestionIndex === questions.length){
+    if (currentQuestionIndex === questions.length) {
         endQuiz();
-    } 
-    else{
+    }
+    else {
         nextQuestion();
     }
 }
@@ -110,40 +115,53 @@ function selectAnswers() {
 timeCounter = setInterval(function () {
     timerCount--;
     if (timerCount <= 0) {
-        clearInterval(timeCounter); 
+        clearInterval(timeCounter);
         endQuiz()
     }
     updateTimer();
 }, timerInterval)
 
 
-    function updateTimer() {
-        gameTimer.textContent = timerCount;
-    }
+function updateTimer() {
+    gameTimer.textContent = timerCount;
+}
 
-    function endQuiz(){
-        clearInterval(timeCounter)
-        endCardScreen.classList.remove('hide')
-        quizCardElement.classList.add('hide')
-        questionCardElement.classList.add('hide')
-        var finalScoreElement = document.getElementById('final_score')
-        finalScoreElement.textContent = timerCount
-        
-
-
-    }
-    submitBtnElement.addEventListener('click', submitQuiz)
-    var nameSubmit = document.getElementById('name')
-    
-    function submitQuiz(){
-        
-        localStorage.setItem(nameSubmit.value , timerCount)
-    }
+function endQuiz() {
+    clearInterval(timeCounter)
+    endCardScreen.classList.remove('hide')
+    endText.classList.remove('hide')
+    quizCardElement.classList.add('hide')
+    questionCardElement.classList.add('hide')
+    gameTimer.classList.add('hide')
+    gameTimerText.classList.add('hide')
+    reStarteBtn.classList.remove('hide')
+    var finalScoreElement = document.getElementById('final_score')
+    finalScoreElement.textContent = timerCount
 
 
-    function init() {
-        gameStart();
-        updateTimer();
-    }
 
-    init();
+}
+submitBtnElement.addEventListener('click', submitQuiz)
+var nameSubmit = document.getElementById('name')
+var restartQuizCard = document.getElementById('restart_card')
+// var storedScores = JSON.parse(localStorage.getItem(userData))
+
+function submitQuiz() {
+    localStorage.setItem(nameSubmit.value, timerCount)
+    endCardScreen.classList.add('hide');
+    restartQuizCard.classList.remove('hide')
+
+}
+
+reStarteBtn.addEventListener('click', restartQuiz)
+
+function restartQuiz() {
+    location.reload();
+}
+
+function init() {
+gameStart();
+updateTimer();
+}
+
+init();
