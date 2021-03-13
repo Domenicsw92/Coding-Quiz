@@ -5,7 +5,7 @@ body{
     margin: 0;
     justify-content: center;
     align-items: center;
-    background-color: blue;
+    background-color: rgba(68, 170, 238, 0.589);
 }
 
 main{
@@ -70,6 +70,22 @@ header {
     padding: 20px 30px;
 }
 
+.feedBack{
+    font-size: 300%;
+    margin: 20px;
+    text-align: center;
+    font-size: larger;
+    color: rgb(224, 203, 14);
+}
+.submitbtn{
+    margin: 10px;
+    background-color: silver;
+    font-size: 85%;
+}
+.nametext{
+    background-color: white;
+    font-size: 45px;
+}
 .controls
 {
     display: flex;

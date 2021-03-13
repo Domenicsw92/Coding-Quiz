@@ -15,7 +15,7 @@
         <p id="intro"> Test your knowledge in the allowed time quickest time wins! <br> Wrong answers loses you time! </p>
         <div id="countdownTimer">
             <span id="timer" class="hide"></span>
-            <span id="timer-text" class="remaining Title hide">seconds remaining</span>
+            <span id="timer-text" class="remaining hide">seconds remaining</span>
         </div>
         </header>
         <nav>
@@ -25,7 +25,7 @@
         <main>
 
 
-            <section class="container">
+            <section id= "Quiz_card" class="container">
                 <div id="question-card" class=" hide">
                     <div id="question" class="quest">Question</div>
                     <div id="answer-btn" class="btn-card">
@@ -45,8 +45,8 @@
 
             <section id="end_Card" class="container hide">
                 <h2>Your Quiz Has Eneded! </h2> <span id="final_score"></span>
-                <p>Enter your name!: <input type="text" id="name"></p>
-                <button id="submit"> Save your name and Score</button>
+                <p>Enter your initals!: <input type="text" id="name" class="nametext"></p>
+                <button id="submit" class="submitbtn"> Save your initals and Score</button>
             </section>
 
 

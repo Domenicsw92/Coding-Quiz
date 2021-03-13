@@ -7,9 +7,11 @@ var questionCardElement = document.getElementById('question-card');
 var questionElement = document.getElementById('question');
 var answerBtnElemnt = document.getElementById('answer-btn');
 var feedBackElement = document.getElementById('feedback')
-var endCardScreen = document.getElementById('end-Card')
+var endCardScreen = document.getElementById('end_Card')
+var quizCardElement = document.getElementById('Quiz_card');
+var submitBtnElement = document.getElementById('submit')
 var timerInterval = 1000;
-var timerCount = 5;
+var timerCount = 100;
 var timeCounter;
 
 
@@ -28,17 +30,18 @@ var questions = [
     {
         question: "The condition in an if/else statement is enclosed within:_____",
         choices: ["Quotes", "Curly Brackets", "Parantheses", "Square Brackets"],
-        correct: "Paratheses",
+        correct: "Parantheses",
     },
     {
         question: "Arrays in JavaScript can be used to store:____?",
-        choices: ["Numbers and Strings", "Other Arrays", "Booleances", " All of the above"],
+        choices: ["Numbers and Strings", "Other Arrays", "Booleances", "All of the above"],
         correct: "All of the above",
     }
 ]
 
 let shuffleQuestions, currentQuestionIndex
 
+//localStorage.getItem()
 
 function gameStart() {
 
@@ -56,9 +59,10 @@ function gameStart() {
     })
 }
 
-function showQuestion(question) {
-    questionElement.innerText = question.question
-    question.choices.forEach(element => {
+function showQuestion() {
+    var currentQuestion = questions[currentQuestionIndex]
+    questionElement.innerText = currentQuestion.question
+    currentQuestion.choices.forEach(element => {
         var button = document.createElement('button')
         console.log(button)
         button.classList.add('btn')
@@ -79,10 +83,10 @@ function nextQuestion() {
 }
 
 function selectAnswers() {
-    if (this.element !== questions[currentQuestionIndex].choices) {
+    if (this.textContent !== questions[currentQuestionIndex].correct) {
         timerCount -= 15;
-        if (timer < 0) {
-            timer = 0;
+        if (timerCount < 0) {
+            timerCount = 0;
         }
         gameTimer.textContent = timerCount ;
         feedBackElement.textContent = "Wrong";
@@ -99,17 +103,15 @@ function selectAnswers() {
         endQuiz();
     } 
     else{
-        showQuestion();
+        nextQuestion();
     }
 }
 
-
-
-
 timeCounter = setInterval(function () {
     timerCount--;
-    if (timerCount === 0) {
+    if (timerCount <= 0) {
         clearInterval(timeCounter); 
+        endQuiz()
     }
     updateTimer();
 }, timerInterval)
@@ -120,13 +122,22 @@ timeCounter = setInterval(function () {
     }
 
     function endQuiz(){
-        clearInterval(timerCounter)
+        clearInterval(timeCounter)
         endCardScreen.classList.remove('hide')
+        quizCardElement.classList.add('hide')
         questionCardElement.classList.add('hide')
         var finalScoreElement = document.getElementById('final_score')
         finalScoreElement.textContent = timerCount
+        
 
 
+    }
+    submitBtnElement.addEventListener('click', submitQuiz)
+    var nameSubmit = document.getElementById('name')
+    
+    function submitQuiz(){
+        
+        localStorage.setItem(nameSubmit.value , timerCount)
     }
 
 
