@@ -19,7 +19,7 @@ var timeCounter;
 
 
 var questions = [
-    {
+    {  
         question: 'Which of the following tags is used to inset a blank line?',
         choices: ['<br>', '<hr>', '<h1>', '<p>'],
         correct: '<br>',
@@ -125,7 +125,7 @@ timeCounter = setInterval(function () {
 function updateTimer() {
     gameTimer.textContent = timerCount;
 }
-
+var finalScoreElement = document.getElementById('final_score')
 function endQuiz() {
     clearInterval(timeCounter)
     endCardScreen.classList.remove('hide')
@@ -135,7 +135,6 @@ function endQuiz() {
     gameTimer.classList.add('hide')
     gameTimerText.classList.add('hide')
     reStarteBtn.classList.remove('hide')
-    var finalScoreElement = document.getElementById('final_score')
     finalScoreElement.textContent = timerCount
 
 
@@ -144,14 +143,22 @@ function endQuiz() {
 submitBtnElement.addEventListener('click', submitQuiz)
 var nameSubmit = document.getElementById('name')
 var restartQuizCard = document.getElementById('restart_card')
-// var storedScores = JSON.parse(localStorage.getItem(userData))
+
+//var storedScores = JSON.parse(localStorage.getItem(nameSubmit))
 
 function submitQuiz() {
-    localStorage.setItem(nameSubmit.value, timerCount)
+   // localStorage.setItem(nameSubmit.value, timerCount)
+    var scores = JSON.parse(localStorage.getItem("scores")) || []
+    var nameSubmit = document.getElementById('user').value
+    var highScores = { name: nameSubmit, score: finalScoreElement }
+    scores.push(highScores)
+    localStorage.setItem("scores", JSON.stringify(scores))
     endCardScreen.classList.add('hide');
     restartQuizCard.classList.remove('hide')
-
 }
+
+//document.getElementById('high_scores').innerHTML=localStorage.getItem('scores')
+
 
 reStarteBtn.addEventListener('click', restartQuiz)
 
@@ -160,8 +167,8 @@ function restartQuiz() {
 }
 
 function init() {
-gameStart();
-updateTimer();
+    gameStart();
+    updateTimer();
 }
 
 init();

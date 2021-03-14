@@ -31,10 +31,13 @@ header {
     font-size: 150%;
 }
 .highNavbar{
+    display: flex;
     color: black;
     text-decoration: underline;
     font-size: 250%;
+    gap: 100px;
 }
+
 .container{
     font-size: 300%;
     width: 800px;
@@ -44,7 +47,7 @@ header {
     padding: 10px;
     box-shadow: 0 0 10px 5px black;
 }
-
+.centerText{text-align: center;}
 .quest{
     font-weight: bolder;
     color: black;
@@ -91,6 +94,7 @@ header {
     
 }
 
+
 .feedBack{
     font-size: 300px;
     margin: 20px;
@@ -107,7 +111,7 @@ header {
     background-color: silver;
     font-size: 85%;
 }
-.nametext{
+.usertext{
     background-color: white;
     font-size: 45px;
 }
