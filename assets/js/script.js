@@ -17,9 +17,9 @@ var timerInterval = 1000;
 var timerCount = 100;
 var timeCounter;
 
-
+// questions are placed here and can be added here 
 var questions = [
-    {  
+    {
         question: 'Which of the following tags is used to inset a blank line?',
         choices: ['<br>', '<hr>', '<h1>', '<p>'],
         correct: '<br>',
@@ -42,7 +42,7 @@ var questions = [
 ]
 
 let shuffleQuestions, currentQuestionIndex
-
+// This function starts the game and timer 
 function gameStart() {
 
     gameStartBtn.addEventListener('click', function () {
@@ -58,7 +58,7 @@ function gameStart() {
         nextQuestion()
     })
 }
-
+// this function grabs the information of the questions array to create a new question card with the question and answer/choices
 function showQuestion() {
     var currentQuestion = questions[currentQuestionIndex]
     questionElement.innerText = currentQuestion.question
@@ -71,6 +71,7 @@ function showQuestion() {
         button.addEventListener('click', selectAnswers)
     })
 }
+// this function clears out the information in the question card.
 function resetQuestionCard() {
     while (answerBtnElemnt.firstChild) {
         answerBtnElemnt.removeChild(answerBtnElemnt.firstChild)
@@ -82,6 +83,8 @@ function nextQuestion() {
     showQuestion(shuffleQuestions[currentQuestionIndex])
 }
 
+//This function is used to display feedback to the user once an choice/answer is selected. If the user choice is selceted wrong the user will lose 35sec
+//if the correct answer is selected 10 sec is added, once a choice is selected the next question is displayed 
 function selectAnswers() {
     if (this.textContent !== questions[currentQuestionIndex].correct) {
         timerCount -= 35;
@@ -126,6 +129,7 @@ function updateTimer() {
     gameTimer.textContent = timerCount;
 }
 var finalScoreElement = document.getElementById('final_score')
+
 function endQuiz() {
     clearInterval(timeCounter)
     endCardScreen.classList.remove('hide')
@@ -147,10 +151,11 @@ var restartQuizCard = document.getElementById('restart_card')
 //var storedScores = JSON.parse(localStorage.getItem(nameSubmit))
 
 function submitQuiz() {
-   // localStorage.setItem(nameSubmit.value, timerCount)
     var scores = JSON.parse(localStorage.getItem("scores")) || []
     var nameSubmit = document.getElementById('user').value
-    var highScores = { name: nameSubmit, score: finalScoreElement }
+    var highScores = { name: nameSubmit, score: finalScoreElement.textContent }
+    console.log(highScores)
+    console.log(finalScoreElement)
     scores.push(highScores)
     localStorage.setItem("scores", JSON.stringify(scores))
     endCardScreen.classList.add('hide');
